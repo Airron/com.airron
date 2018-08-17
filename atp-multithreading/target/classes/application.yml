@@ -1,0 +1,12 @@
+# ����mybatis-plus
+mybatis-plus:
+  # ����ɨ��xml
+  mapper-locations:
+    - classpath:mapper/*.xml
+  # ʵ��ɨ�裬���package�ö��Ż��߷ֺŷָ�
+  type-aliases-package: com.ahut.entity
+  global-config:
+    # �߼�ɾ������
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+    sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
