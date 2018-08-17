@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.lang.SuppressWarnings"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.AutoGenerator"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.config.GlobalConfig"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.config.DataSourceConfig"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.entity.TableInfo"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.config.FileOutConfig"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.config.po.TableInfo"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.config.rules.DbColumnType"/>
+<fullyQualifiedTypeName name="com.baomidou.mybatisplus.generator.config.TemplateConfig"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+</qualifiedTypeNameHistroy>

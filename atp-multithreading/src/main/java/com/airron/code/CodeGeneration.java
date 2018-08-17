@@ -101,7 +101,7 @@ public class CodeGeneration {
         pc.setModuleName("test");
         mpg.setPackageInfo(pc);
 
-/*        // 注入自定义配置，可以在 VM 中使用 cfg.abc 【可无】
+        // 注入自定义配置，可以在 VM 中使用 cfg.abc 【可无】
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
@@ -131,7 +131,7 @@ public class CodeGeneration {
             }
         });
         cfg.setFileOutConfigList(focList);
-        mpg.setCfg(cfg);*/
+        mpg.setCfg(cfg);
 
         // 关闭默认 xml 生成，调整生成 至 根目录
         TemplateConfig tc = new TemplateConfig();
