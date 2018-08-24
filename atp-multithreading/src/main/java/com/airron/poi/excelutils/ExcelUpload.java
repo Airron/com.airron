@@ -1,6 +1,4 @@
 package com.airron.poi.excelutils;
-
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -8,13 +6,14 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
+ 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+ 
 /**
  * 2 * @Author: ponyWang
  * 3 * @Date: 2018/6/12 11:56
@@ -35,7 +34,7 @@ public class ExcelUpload {
         Row row = sheet.getRow(0);//第一列
         Short cloumns = row.getLastCellNum();
         int cloumnNum = cloumns;//总列数
-
+ 
         List<String> header = new ArrayList();//表头数据
         for (int i = 0 ; i < cloumnNum ; i++){
             Cell cell = row.getCell(i);
@@ -46,8 +45,9 @@ public class ExcelUpload {
             header.add(cell.getStringCellValue());
         }
         List result = new ArrayList();
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         //循环读取表格内容
-        for (int j = 1 ;j < rowNum ; j++){
+        for (int j = 1 ;j <= rowNum ; j++){
             List currentRow = new ArrayList();
             Map rowMap = new HashMap();
             for (int k = 0 ; k < cloumnNum ; k++){
@@ -59,34 +59,40 @@ public class ExcelUpload {
                     switch (cell.getCellType())
                     {
                         case HSSFCell.CELL_TYPE_NUMERIC: // 数字
-                            cellValue = cell.getNumericCellValue() + "";
+                            cellValue = decimalFormat.format(cell.getNumericCellValue());
+ 
+                            double numericCellValue = cell.getNumericCellValue();
+                            long inVal = Math.round(numericCellValue);
+                            if (numericCellValue - inVal == 0) {
+                                cellValue = inVal+"";
+                            }
                             break;
-
+ 
                         case HSSFCell.CELL_TYPE_STRING: // 字符串
                             cellValue = cell.getStringCellValue();
                             break;
-
+ 
                         case HSSFCell.CELL_TYPE_BOOLEAN: // Boolean
                             cellValue = cell.getBooleanCellValue() + "";
                             break;
-
+ 
                         case HSSFCell.CELL_TYPE_FORMULA: // 公式
                             cellValue = cell.getCellFormula() + "";
                             break;
-
+ 
                         case HSSFCell.CELL_TYPE_BLANK: // 空值
                             cellValue = "";
                             break;
-
+ 
                         case HSSFCell.CELL_TYPE_ERROR: // 故障
                             cellValue = "非法字符";
                             break;
-
+ 
                         default:
                             cellValue = "未知类型";
                             break;
                     }
-
+ 
                     rowMap.put(key,cellValue);
                 }
             }
@@ -95,12 +101,14 @@ public class ExcelUpload {
         }
         return result;
     }
-
-
+ 
+ 
     public static void main(String[] args) throws IOException {
-        File  file = new File("C:\\Users\\Singing\\Desktop\\2017-04-16.xlsx");
+        File  file = new File("C:\\Users\\Administrator\\Desktop\\成品出库流水.xls");
         ExcelUpload instance = new ExcelUpload();
         List result= instance.excelUpload(file);
-        System.out.println(result);
+        result.get(0);
+        
+        System.out.println(result.get(0));
     }
 }

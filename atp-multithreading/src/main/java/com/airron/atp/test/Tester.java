@@ -6,6 +6,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.ss.usermodel.Cell;
+
+import com.airron.poi.excelutils.ExcelUpload;
 import com.airron.poi.excelutils.Excel_reader;
 import com.graphbuilder.struc.LinkedList;
 
@@ -17,22 +20,30 @@ public class Tester {
 		String courseFile = directory.getCanonicalPath() ; 
 		System.out.println(courseFile); 
 		
-		File file = new File("E:/user/my_doc/tencent/wechat/WeChat Files/Aricocolo/Files/系统2018.08.22.xls");
+		File file = new File("C:\\Users\\Administrator\\Desktop\\成品出库流水.xls");
 		
 		
 		
 		Excel_reader exr = new Excel_reader(); 
-		LinkedList list = exr.excel_reader(file);
-		System.out.println(list.size());
+		List<Map<Integer, List<Cell>>> mapList2 = exr.excel_reader(file);
+		mapList2.get(0).get(0).get(0);
+		System.out.println(mapList2.get(0).get(0).get(0));
+		//System.out.println(exr.getCell(file, 124, 3));
+		//List<Map> mapList = exr.excel_reader(file);
+		//System.out.println(mapList.get(1).get(3));
 //		for(int i=0;i<20;i++){
 //			list.getHead();
 //			list.size();
 //		}
 //		
-//		ExcelUpload eud = new ExcelUpload();
-//		eud.excelUpload(file);
+	/*	ExcelUpload eud = new ExcelUpload();
+		eud.excelUpload(file);
 		
-		
+		ExcelUpload exp = new ExcelUpload();
+				List<Map> mapList = exp.excelUpload(file);
+				
+		mapList.get(1).get(1);*/
+//		
 	}
 
 }
