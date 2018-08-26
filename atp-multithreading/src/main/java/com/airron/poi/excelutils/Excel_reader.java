@@ -46,7 +46,6 @@ public class Excel_reader {
 		}	
 		Sheet sheet = workbook.getSheet(sheet_name);
 		Row row = sheet.getRow(row1);
-		//Cell cell = row.getCell(cell1).getStr;
 		
 		/*if(cell != null){
             String cellValue = "";
@@ -122,7 +121,6 @@ public class Excel_reader {
 					if(row_text.getCell(cell_num)!=null) {
 						Cell text_cell = row_text.getCell(cell_num);
 						cellList.add(text_cell);
-						//System.out.println(cellList.get(cell_num));
 					}
 					else
 					{

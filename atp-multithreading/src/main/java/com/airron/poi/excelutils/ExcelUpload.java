@@ -6,7 +6,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
- 
+import org.springframework.stereotype.Service;
+
 import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.Map;
  * 3 * @Date: 2018/6/12 11:56
  * 4
  */
+@Service
 public class ExcelUpload {
     public List<Map> excelUpload(File file) throws IOException {
         InputStreamReader reader = new InputStreamReader(
