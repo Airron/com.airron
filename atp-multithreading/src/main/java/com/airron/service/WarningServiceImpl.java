@@ -11,6 +11,7 @@ import com.airron.mapper.WarnProPlanMapper;
 import com.airron.mapper.WarnProjectMapper;
 import com.airron.vo.TbParamContrast;
 import com.airron.vo.TbParamContrastExample;
+import com.airron.vo.WarnProPlan;
 import com.airron.vo.WarnProject;
 import com.airron.vo.TbParamContrast;
 import com.airron.vo.WarnProjectExample;
@@ -29,7 +30,8 @@ public class WarningServiceImpl implements WarningService {
 	private TbParamContrast TbParamContrast;
 	@Autowired
 	private TbParamContrastService tbParamContrastService;
-	
+	@Autowired
+	private WarnProPlan warnProPlan;
 	
 	public String Upload(int tb_no){
 		
