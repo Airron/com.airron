@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.Cell;
 
 import com.airron.poi.excelutils.ExcelUpload;
 import com.airron.poi.excelutils.Excel_reader;
+
 import com.graphbuilder.struc.LinkedList;
 
 public class Tester {
@@ -41,7 +42,7 @@ public class Tester {
 		Excel_reader exr = new Excel_reader(); 
 		List<Map<Integer, List<Cell>>> mapList2 = exr.excel_reader(file);
 		mapList2.get(0).get(0).get(0);
-		System.out.println(mapList2.get(0).get(1987).get(1));
+		System.out.println(mapList2.get(0).get(1188).get(1));
 
 /*		File file = new File("C:\\Users\\Administrator\\Desktop\\预警项目记录\\2018-09-04\\20180904补料申请单预警.xls");
 		
@@ -49,6 +50,7 @@ public class Tester {
 		System.out.println(exr.getCell(file, "Sheet1", 3, 3));
 		
 		*/
+		
 		
 		
 /*		File file2 = new File("E:\\user\\private_share\\config\\erpconf.txt");

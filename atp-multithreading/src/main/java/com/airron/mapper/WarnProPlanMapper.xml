@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.airron.mapper.WarnProPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.airron.vo.WarnProPlan" >
+    <id column="wn_pro_lock_no" property="wnProLockNo" jdbcType="VARCHAR" />
+    <result column="wn_pro_status" property="wnProStatus" jdbcType="VARCHAR" />
+    <result column="wn_pro_if_clean" property="wnProIfClean" jdbcType="VARCHAR" />
+    <result column="wn_pro_dept" property="wnProDept" jdbcType="VARCHAR" />
+    <result column="wn_pro_input_date" property="wnProInputDate" jdbcType="TIMESTAMP" />
+    <result column="wn_pro_date" property="wnProDate" jdbcType="TIMESTAMP" />
+    <result column="wn_pro_line" property="wnProLine" jdbcType="VARCHAR" />
+    <result column="wn_pro_code" property="wnProCode" jdbcType="VARCHAR" />
+    <result column="wn_pro_name" property="wnProName" jdbcType="VARCHAR" />
+    <result column="wn_pro_num" property="wnProNum" jdbcType="INTEGER" />
+    <result column="wn_pro_user" property="wnProUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    wn_pro_lock_no, wn_pro_status, wn_pro_if_clean, wn_pro_dept, wn_pro_input_date, wn_pro_date, 
+    wn_pro_line, wn_pro_code, wn_pro_name, wn_pro_num, wn_pro_user
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.airron.vo.WarnProPlanExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from warn_pro_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from warn_pro_plan
+    where wn_pro_lock_no = #{wnProLockNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from warn_pro_plan
+    where wn_pro_lock_no = #{wnProLockNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.airron.vo.WarnProPlanExample" >
+    delete from warn_pro_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.airron.vo.WarnProPlan" >
+    insert into warn_pro_plan (wn_pro_lock_no, wn_pro_status, wn_pro_if_clean, 
+      wn_pro_dept, wn_pro_input_date, wn_pro_date, 
+      wn_pro_line, wn_pro_code, wn_pro_name, 
+      wn_pro_num, wn_pro_user)
+    values (#{wnProLockNo,jdbcType=VARCHAR}, #{wnProStatus,jdbcType=VARCHAR}, #{wnProIfClean,jdbcType=VARCHAR}, 
+      #{wnProDept,jdbcType=VARCHAR}, #{wnProInputDate,jdbcType=TIMESTAMP}, #{wnProDate,jdbcType=TIMESTAMP}, 
+      #{wnProLine,jdbcType=VARCHAR}, #{wnProCode,jdbcType=VARCHAR}, #{wnProName,jdbcType=VARCHAR}, 
+      #{wnProNum,jdbcType=INTEGER}, #{wnProUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.airron.vo.WarnProPlan" >
+    insert into warn_pro_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wnProLockNo != null" >
+        wn_pro_lock_no,
+      </if>
+      <if test="wnProStatus != null" >
+        wn_pro_status,
+      </if>
+      <if test="wnProIfClean != null" >
+        wn_pro_if_clean,
+      </if>
+      <if test="wnProDept != null" >
+        wn_pro_dept,
+      </if>
+      <if test="wnProInputDate != null" >
+        wn_pro_input_date,
+      </if>
+      <if test="wnProDate != null" >
+        wn_pro_date,
+      </if>
+      <if test="wnProLine != null" >
+        wn_pro_line,
+      </if>
+      <if test="wnProCode != null" >
+        wn_pro_code,
+      </if>
+      <if test="wnProName != null" >
+        wn_pro_name,
+      </if>
+      <if test="wnProNum != null" >
+        wn_pro_num,
+      </if>
+      <if test="wnProUser != null" >
+        wn_pro_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wnProLockNo != null" >
+        #{wnProLockNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProStatus != null" >
+        #{wnProStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProIfClean != null" >
+        #{wnProIfClean,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProDept != null" >
+        #{wnProDept,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProInputDate != null" >
+        #{wnProInputDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wnProDate != null" >
+        #{wnProDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wnProLine != null" >
+        #{wnProLine,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProCode != null" >
+        #{wnProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProName != null" >
+        #{wnProName,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProNum != null" >
+        #{wnProNum,jdbcType=INTEGER},
+      </if>
+      <if test="wnProUser != null" >
+        #{wnProUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.airron.vo.WarnProPlanExample" resultType="java.lang.Integer" >
+    select count(*) from warn_pro_plan
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update warn_pro_plan
+    <set >
+      <if test="record.wnProLockNo != null" >
+        wn_pro_lock_no = #{record.wnProLockNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnProStatus != null" >
+        wn_pro_status = #{record.wnProStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnProIfClean != null" >
+        wn_pro_if_clean = #{record.wnProIfClean,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnProDept != null" >
+        wn_pro_dept = #{record.wnProDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnProInputDate != null" >
+        wn_pro_input_date = #{record.wnProInputDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wnProDate != null" >
+        wn_pro_date = #{record.wnProDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.wnProLine != null" >
+        wn_pro_line = #{record.wnProLine,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnProCode != null" >
+        wn_pro_code = #{record.wnProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnProName != null" >
+        wn_pro_name = #{record.wnProName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnProNum != null" >
+        wn_pro_num = #{record.wnProNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.wnProUser != null" >
+        wn_pro_user = #{record.wnProUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update warn_pro_plan
+    set wn_pro_lock_no = #{record.wnProLockNo,jdbcType=VARCHAR},
+      wn_pro_status = #{record.wnProStatus,jdbcType=VARCHAR},
+      wn_pro_if_clean = #{record.wnProIfClean,jdbcType=VARCHAR},
+      wn_pro_dept = #{record.wnProDept,jdbcType=VARCHAR},
+      wn_pro_input_date = #{record.wnProInputDate,jdbcType=TIMESTAMP},
+      wn_pro_date = #{record.wnProDate,jdbcType=TIMESTAMP},
+      wn_pro_line = #{record.wnProLine,jdbcType=VARCHAR},
+      wn_pro_code = #{record.wnProCode,jdbcType=VARCHAR},
+      wn_pro_name = #{record.wnProName,jdbcType=VARCHAR},
+      wn_pro_num = #{record.wnProNum,jdbcType=INTEGER},
+      wn_pro_user = #{record.wnProUser,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.airron.vo.WarnProPlan" >
+    update warn_pro_plan
+    <set >
+      <if test="wnProStatus != null" >
+        wn_pro_status = #{wnProStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProIfClean != null" >
+        wn_pro_if_clean = #{wnProIfClean,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProDept != null" >
+        wn_pro_dept = #{wnProDept,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProInputDate != null" >
+        wn_pro_input_date = #{wnProInputDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wnProDate != null" >
+        wn_pro_date = #{wnProDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wnProLine != null" >
+        wn_pro_line = #{wnProLine,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProCode != null" >
+        wn_pro_code = #{wnProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProName != null" >
+        wn_pro_name = #{wnProName,jdbcType=VARCHAR},
+      </if>
+      <if test="wnProNum != null" >
+        wn_pro_num = #{wnProNum,jdbcType=INTEGER},
+      </if>
+      <if test="wnProUser != null" >
+        wn_pro_user = #{wnProUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where wn_pro_lock_no = #{wnProLockNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.airron.vo.WarnProPlan" >
+    update warn_pro_plan
+    set wn_pro_status = #{wnProStatus,jdbcType=VARCHAR},
+      wn_pro_if_clean = #{wnProIfClean,jdbcType=VARCHAR},
+      wn_pro_dept = #{wnProDept,jdbcType=VARCHAR},
+      wn_pro_input_date = #{wnProInputDate,jdbcType=TIMESTAMP},
+      wn_pro_date = #{wnProDate,jdbcType=TIMESTAMP},
+      wn_pro_line = #{wnProLine,jdbcType=VARCHAR},
+      wn_pro_code = #{wnProCode,jdbcType=VARCHAR},
+      wn_pro_name = #{wnProName,jdbcType=VARCHAR},
+      wn_pro_num = #{wnProNum,jdbcType=INTEGER},
+      wn_pro_user = #{wnProUser,jdbcType=VARCHAR}
+    where wn_pro_lock_no = #{wnProLockNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

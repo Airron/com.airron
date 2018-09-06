@@ -23,13 +23,13 @@ public class DataUploadController {
 	
 	@Autowired
 	private DataUploadService dataUploadService;
-	public String dataUpload(String tbName,File file) {
+	public String dataUpload(int tbNo,File file) {
 		//根据表名，获取数据：获取导入的数据对照表格
-		List<TbDictExchange> tblist = dataUploadService.GetTbDictByName(tbName);
+		List<TbDictExchange> tblist = dataUploadService.GetTbDictByName(3);
 		//
 		Excel_reader reader = new Excel_reader();
 		try {
-			List<Map<Integer, List<Cell>>> excelList = reader.excel_reader(file);
+			List<Map<Integer, List<Cell>>> excelList = reader.excel_reader(0,file);
 			
 			for(int row=0;row<excelList.size();row++){
 				

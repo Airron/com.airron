@@ -16,11 +16,13 @@ public class DataUploadServiceImpl implements DataUploadService{
 	private TbDictExchangeMapper tbDictExchangeMapper;
 	
 	
+
+
 	@Override
-	public List GetTbDictByName(String name) {
+	public List GetTbDictByName(int table_no) {
 		// TODO Auto-generated method stub
-		List<TbDictExchange> tbList = tbDictExchangeMapper.getTbDictByName(name);
-		return tbList;
+		return null;
+		
 	}
 
 }

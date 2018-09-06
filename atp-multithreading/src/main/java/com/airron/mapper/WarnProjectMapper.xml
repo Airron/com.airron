@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.airron.mapper.WarnProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.airron.vo.WarnProject" >
+    <id column="wn_fid" property="wnFid" jdbcType="INTEGER" />
+    <result column="wn_id" property="wnId" jdbcType="INTEGER" />
+    <result column="wn_fname" property="wnFname" jdbcType="VARCHAR" />
+    <result column="wn_name" property="wnName" jdbcType="VARCHAR" />
+    <result column="wn_file_name" property="wnFileName" jdbcType="VARCHAR" />
+    <result column="wn_status" property="wnStatus" jdbcType="VARCHAR" />
+    <result column="wn_forfeit" property="wnForfeit" jdbcType="INTEGER" />
+    <result column="wn_comment" property="wnComment" jdbcType="VARCHAR" />
+    <result column="wn_rules" property="wnRules" jdbcType="VARCHAR" />
+    <result column="wn_duty_dept" property="wnDutyDept" jdbcType="VARCHAR" />
+    <result column="wn_tb_no" property="wnTbNo" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.airron.vo.WarnProject" extends="BaseResultMap" >
+    <result column="wn_file_path" property="wnFilePath" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    wn_fid, wn_id, wn_fname, wn_name, wn_file_name, wn_status, wn_forfeit, wn_comment, 
+    wn_rules, wn_duty_dept, wn_tb_no
+  </sql>
+  <sql id="Blob_Column_List" >
+    wn_file_path
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.airron.vo.WarnProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from warn_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.airron.vo.WarnProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from warn_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from warn_project
+    where wn_fid = #{wnFid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from warn_project
+    where wn_fid = #{wnFid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.airron.vo.WarnProjectExample" >
+    delete from warn_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.airron.vo.WarnProject" >
+    insert into warn_project (wn_fid, wn_id, wn_fname, 
+      wn_name, wn_file_name, wn_status, 
+      wn_forfeit, wn_comment, wn_rules, 
+      wn_duty_dept, wn_tb_no, wn_file_path
+      )
+    values (#{wnFid,jdbcType=INTEGER}, #{wnId,jdbcType=INTEGER}, #{wnFname,jdbcType=VARCHAR}, 
+      #{wnName,jdbcType=VARCHAR}, #{wnFileName,jdbcType=VARCHAR}, #{wnStatus,jdbcType=VARCHAR}, 
+      #{wnForfeit,jdbcType=INTEGER}, #{wnComment,jdbcType=VARCHAR}, #{wnRules,jdbcType=VARCHAR}, 
+      #{wnDutyDept,jdbcType=VARCHAR}, #{wnTbNo,jdbcType=INTEGER}, #{wnFilePath,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.airron.vo.WarnProject" >
+    insert into warn_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wnFid != null" >
+        wn_fid,
+      </if>
+      <if test="wnId != null" >
+        wn_id,
+      </if>
+      <if test="wnFname != null" >
+        wn_fname,
+      </if>
+      <if test="wnName != null" >
+        wn_name,
+      </if>
+      <if test="wnFileName != null" >
+        wn_file_name,
+      </if>
+      <if test="wnStatus != null" >
+        wn_status,
+      </if>
+      <if test="wnForfeit != null" >
+        wn_forfeit,
+      </if>
+      <if test="wnComment != null" >
+        wn_comment,
+      </if>
+      <if test="wnRules != null" >
+        wn_rules,
+      </if>
+      <if test="wnDutyDept != null" >
+        wn_duty_dept,
+      </if>
+      <if test="wnTbNo != null" >
+        wn_tb_no,
+      </if>
+      <if test="wnFilePath != null" >
+        wn_file_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wnFid != null" >
+        #{wnFid,jdbcType=INTEGER},
+      </if>
+      <if test="wnId != null" >
+        #{wnId,jdbcType=INTEGER},
+      </if>
+      <if test="wnFname != null" >
+        #{wnFname,jdbcType=VARCHAR},
+      </if>
+      <if test="wnName != null" >
+        #{wnName,jdbcType=VARCHAR},
+      </if>
+      <if test="wnFileName != null" >
+        #{wnFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="wnStatus != null" >
+        #{wnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="wnForfeit != null" >
+        #{wnForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="wnComment != null" >
+        #{wnComment,jdbcType=VARCHAR},
+      </if>
+      <if test="wnRules != null" >
+        #{wnRules,jdbcType=VARCHAR},
+      </if>
+      <if test="wnDutyDept != null" >
+        #{wnDutyDept,jdbcType=VARCHAR},
+      </if>
+      <if test="wnTbNo != null" >
+        #{wnTbNo,jdbcType=INTEGER},
+      </if>
+      <if test="wnFilePath != null" >
+        #{wnFilePath,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.airron.vo.WarnProjectExample" resultType="java.lang.Integer" >
+    select count(*) from warn_project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update warn_project
+    <set >
+      <if test="record.wnFid != null" >
+        wn_fid = #{record.wnFid,jdbcType=INTEGER},
+      </if>
+      <if test="record.wnId != null" >
+        wn_id = #{record.wnId,jdbcType=INTEGER},
+      </if>
+      <if test="record.wnFname != null" >
+        wn_fname = #{record.wnFname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnName != null" >
+        wn_name = #{record.wnName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnFileName != null" >
+        wn_file_name = #{record.wnFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnStatus != null" >
+        wn_status = #{record.wnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnForfeit != null" >
+        wn_forfeit = #{record.wnForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="record.wnComment != null" >
+        wn_comment = #{record.wnComment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnRules != null" >
+        wn_rules = #{record.wnRules,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnDutyDept != null" >
+        wn_duty_dept = #{record.wnDutyDept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wnTbNo != null" >
+        wn_tb_no = #{record.wnTbNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.wnFilePath != null" >
+        wn_file_path = #{record.wnFilePath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update warn_project
+    set wn_fid = #{record.wnFid,jdbcType=INTEGER},
+      wn_id = #{record.wnId,jdbcType=INTEGER},
+      wn_fname = #{record.wnFname,jdbcType=VARCHAR},
+      wn_name = #{record.wnName,jdbcType=VARCHAR},
+      wn_file_name = #{record.wnFileName,jdbcType=VARCHAR},
+      wn_status = #{record.wnStatus,jdbcType=VARCHAR},
+      wn_forfeit = #{record.wnForfeit,jdbcType=INTEGER},
+      wn_comment = #{record.wnComment,jdbcType=VARCHAR},
+      wn_rules = #{record.wnRules,jdbcType=VARCHAR},
+      wn_duty_dept = #{record.wnDutyDept,jdbcType=VARCHAR},
+      wn_tb_no = #{record.wnTbNo,jdbcType=INTEGER},
+      wn_file_path = #{record.wnFilePath,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update warn_project
+    set wn_fid = #{record.wnFid,jdbcType=INTEGER},
+      wn_id = #{record.wnId,jdbcType=INTEGER},
+      wn_fname = #{record.wnFname,jdbcType=VARCHAR},
+      wn_name = #{record.wnName,jdbcType=VARCHAR},
+      wn_file_name = #{record.wnFileName,jdbcType=VARCHAR},
+      wn_status = #{record.wnStatus,jdbcType=VARCHAR},
+      wn_forfeit = #{record.wnForfeit,jdbcType=INTEGER},
+      wn_comment = #{record.wnComment,jdbcType=VARCHAR},
+      wn_rules = #{record.wnRules,jdbcType=VARCHAR},
+      wn_duty_dept = #{record.wnDutyDept,jdbcType=VARCHAR},
+      wn_tb_no = #{record.wnTbNo,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.airron.vo.WarnProject" >
+    update warn_project
+    <set >
+      <if test="wnId != null" >
+        wn_id = #{wnId,jdbcType=INTEGER},
+      </if>
+      <if test="wnFname != null" >
+        wn_fname = #{wnFname,jdbcType=VARCHAR},
+      </if>
+      <if test="wnName != null" >
+        wn_name = #{wnName,jdbcType=VARCHAR},
+      </if>
+      <if test="wnFileName != null" >
+        wn_file_name = #{wnFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="wnStatus != null" >
+        wn_status = #{wnStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="wnForfeit != null" >
+        wn_forfeit = #{wnForfeit,jdbcType=INTEGER},
+      </if>
+      <if test="wnComment != null" >
+        wn_comment = #{wnComment,jdbcType=VARCHAR},
+      </if>
+      <if test="wnRules != null" >
+        wn_rules = #{wnRules,jdbcType=VARCHAR},
+      </if>
+      <if test="wnDutyDept != null" >
+        wn_duty_dept = #{wnDutyDept,jdbcType=VARCHAR},
+      </if>
+      <if test="wnTbNo != null" >
+        wn_tb_no = #{wnTbNo,jdbcType=INTEGER},
+      </if>
+      <if test="wnFilePath != null" >
+        wn_file_path = #{wnFilePath,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where wn_fid = #{wnFid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.airron.vo.WarnProject" >
+    update warn_project
+    set wn_id = #{wnId,jdbcType=INTEGER},
+      wn_fname = #{wnFname,jdbcType=VARCHAR},
+      wn_name = #{wnName,jdbcType=VARCHAR},
+      wn_file_name = #{wnFileName,jdbcType=VARCHAR},
+      wn_status = #{wnStatus,jdbcType=VARCHAR},
+      wn_forfeit = #{wnForfeit,jdbcType=INTEGER},
+      wn_comment = #{wnComment,jdbcType=VARCHAR},
+      wn_rules = #{wnRules,jdbcType=VARCHAR},
+      wn_duty_dept = #{wnDutyDept,jdbcType=VARCHAR},
+      wn_tb_no = #{wnTbNo,jdbcType=INTEGER},
+      wn_file_path = #{wnFilePath,jdbcType=LONGVARCHAR}
+    where wn_fid = #{wnFid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.airron.vo.WarnProject" >
+    update warn_project
+    set wn_id = #{wnId,jdbcType=INTEGER},
+      wn_fname = #{wnFname,jdbcType=VARCHAR},
+      wn_name = #{wnName,jdbcType=VARCHAR},
+      wn_file_name = #{wnFileName,jdbcType=VARCHAR},
+      wn_status = #{wnStatus,jdbcType=VARCHAR},
+      wn_forfeit = #{wnForfeit,jdbcType=INTEGER},
+      wn_comment = #{wnComment,jdbcType=VARCHAR},
+      wn_rules = #{wnRules,jdbcType=VARCHAR},
+      wn_duty_dept = #{wnDutyDept,jdbcType=VARCHAR},
+      wn_tb_no = #{wnTbNo,jdbcType=INTEGER}
+    where wn_fid = #{wnFid,jdbcType=INTEGER}
+  </update>
+</mapper>
