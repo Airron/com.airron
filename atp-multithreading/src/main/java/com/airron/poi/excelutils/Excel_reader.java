@@ -104,6 +104,7 @@ public class Excel_reader {
 				// System.out.println("cell_first:" + cell_first);
 				// System.out.println("cell_last:" + cell_last);
 				Map<Integer, List<Cell>> rowMap = new HashMap<Integer, List<Cell>>();
+				
 				for (int text_row_num = 0; text_row_num < row_last + 1; text_row_num++) {
 					Row row_text = sheet.getRow(text_row_num);
 					List<Cell> cellList = new ArrayList<Cell>();
@@ -120,9 +121,9 @@ public class Excel_reader {
 							Cell text_cell = row_text.getCell(cell_num);
 							cellList.add(text_cell);
 
-							// System.out.println(text_cell);
+							 System.out.println(text_cell);
 						} catch (Exception ex) {
-							// ex.printStackTrace();
+							ex.printStackTrace();
 							break;
 						}
 					}

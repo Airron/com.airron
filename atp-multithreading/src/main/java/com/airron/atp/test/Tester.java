@@ -37,12 +37,12 @@ public class Tester {
 		System.out.println(courseFile);
  */
 		
-		File file = new File("C:\\Users\\Administrator\\Desktop\\预警项目记录\\2018-09-04\\20180904采购送检单预警.xls");
+		File file = new File("D:\\用户目录\\我的文档\\My RTX Files\\g170780\\成型派工单与系统数据核查18.9.05号.xls");
 		
 		Excel_reader exr = new Excel_reader(); 
-		List<Map<Integer, List<Cell>>> mapList2 = exr.excel_reader(file);
+		List<Map<Integer, List<Cell>>> mapList2 = exr.excel_reader(0, file);
 		mapList2.get(0).get(0).get(0);
-		System.out.println(mapList2.get(0).get(1188).get(1));
+		System.out.println(mapList2.get(0).get(86).get(9));
 
 /*		File file = new File("C:\\Users\\Administrator\\Desktop\\预警项目记录\\2018-09-04\\20180904补料申请单预警.xls");
 		
