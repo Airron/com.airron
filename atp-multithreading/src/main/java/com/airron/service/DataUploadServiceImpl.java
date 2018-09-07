@@ -36,6 +36,8 @@ public class DataUploadServiceImpl implements DataUploadService{
 	@Autowired
 	private WarnProPlan warnProPlan;
 	
+	
+	//上传生产计划预警
 	public String Upload_To_ProPlan(File file,String warn_type){
 		//获取文件信息
 		String fileName = file.getName();
@@ -53,12 +55,7 @@ public class DataUploadServiceImpl implements DataUploadService{
 		int tb_size = list.size();
 		//wesun_name  -- sys_name
 		
-		
-		
-		
-		
-		
-		
+
 		
 		return null;
 		
