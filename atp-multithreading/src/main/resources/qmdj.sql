@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2018-09-06 22:28:57
+Date: 2018-09-13 21:50:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -5185,13 +5185,15 @@ CREATE TABLE `tb_dict_exchange` (
   `sys_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `other_nanme` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `tb_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dict_value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`no`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of tb_dict_exchange
 -- ----------------------------
-INSERT INTO `tb_dict_exchange` VALUES ('1', 'date', '日期', 'TaskBill_check');
+INSERT INTO `tb_dict_exchange` VALUES ('1', '生产计划预警前缀', '生产计划预警前缀', 'warn_pro_plan', 'C:\\\\Users\\\\Administrator\\\\Desktop\\\\预警项目记录\\\\');
+INSERT INTO `tb_dict_exchange` VALUES ('2', '生产计划预警日期路径', '生产计划预警日期路径', 'warn_pro_plan', '');
 
 -- ----------------------------
 -- Table structure for tb_param_contrast
@@ -5352,7 +5354,7 @@ CREATE TABLE `tb_user` (
   `user_leaderdept` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '上级部门',
   `user_station` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '岗位',
   PRIMARY KEY (`user_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息表';
 
 -- ----------------------------
 -- Records of tb_user
@@ -8109,8 +8111,7 @@ CREATE TABLE `warn_project` (
   `wn_comment` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '说明',
   `wn_rules` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '规则',
   `wn_duty_dept` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '责任部门',
-  `wn_tb_no` int(11) DEFAULT NULL,
-  PRIMARY KEY (`wn_fid`)
+  `wn_tb_no` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='预警考核项目';
 
 -- ----------------------------
@@ -8123,18 +8124,20 @@ INSERT INTO `warn_project` VALUES ('1', '1001', '生产计划预警', '日清未
 -- ----------------------------
 DROP TABLE IF EXISTS `warn_pro_plan`;
 CREATE TABLE `warn_pro_plan` (
+  `wn_pro_logtime` datetime DEFAULT NULL,
+  `wn_pro_no` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键编号',
   `wn_pro_status` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '状态',
   `wn_pro_if_clean` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '是否日清',
   `wn_pro_dept` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '加工单位',
   `wn_pro_input_date` datetime DEFAULT NULL COMMENT '输入日期',
   `wn_pro_date` datetime DEFAULT NULL COMMENT '上线日期',
-  `wn_pro_lock_no` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '日锁定计划号',
+  `wn_pro_lock_no` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '日锁定计划号',
   `wn_pro_line` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '产线',
   `wn_pro_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '编码',
   `wn_pro_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '品名',
   `wn_pro_num` int(11) DEFAULT NULL COMMENT '派工数量',
   `wn_pro_user` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '加工人',
-  PRIMARY KEY (`wn_pro_lock_no`)
+  PRIMARY KEY (`wn_pro_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
