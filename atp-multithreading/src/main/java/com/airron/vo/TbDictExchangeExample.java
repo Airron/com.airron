@@ -373,6 +373,76 @@ public class TbDictExchangeExample {
             addCriterion("tb_name not between", value1, value2, "tbName");
             return (Criteria) this;
         }
+
+        public Criteria andDictValueIsNull() {
+            addCriterion("dict_value is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueIsNotNull() {
+            addCriterion("dict_value is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueEqualTo(String value) {
+            addCriterion("dict_value =", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueNotEqualTo(String value) {
+            addCriterion("dict_value <>", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueGreaterThan(String value) {
+            addCriterion("dict_value >", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueGreaterThanOrEqualTo(String value) {
+            addCriterion("dict_value >=", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueLessThan(String value) {
+            addCriterion("dict_value <", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueLessThanOrEqualTo(String value) {
+            addCriterion("dict_value <=", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueLike(String value) {
+            addCriterion("dict_value like", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueNotLike(String value) {
+            addCriterion("dict_value not like", value, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueIn(List<String> values) {
+            addCriterion("dict_value in", values, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueNotIn(List<String> values) {
+            addCriterion("dict_value not in", values, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueBetween(String value1, String value2) {
+            addCriterion("dict_value between", value1, value2, "dictValue");
+            return (Criteria) this;
+        }
+
+        public Criteria andDictValueNotBetween(String value1, String value2) {
+            addCriterion("dict_value not between", value1, value2, "dictValue");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

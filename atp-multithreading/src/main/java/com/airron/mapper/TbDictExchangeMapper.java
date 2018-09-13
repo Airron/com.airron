@@ -27,6 +27,4 @@ public interface TbDictExchangeMapper {
     int updateByPrimaryKeySelective(TbDictExchange record);
 
     int updateByPrimaryKey(TbDictExchange record);
-
-	List<TbDictExchange> getTbDictByName(String name);
 }

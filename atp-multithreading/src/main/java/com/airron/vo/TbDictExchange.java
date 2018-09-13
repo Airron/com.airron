@@ -9,6 +9,8 @@ public class TbDictExchange {
 
     private String tbName;
 
+    private String dictValue;
+
     public Integer getNo() {
         return no;
     }
@@ -39,5 +41,13 @@ public class TbDictExchange {
 
     public void setTbName(String tbName) {
         this.tbName = tbName == null ? null : tbName.trim();
+    }
+
+    public String getDictValue() {
+        return dictValue;
+    }
+
+    public void setDictValue(String dictValue) {
+        this.dictValue = dictValue == null ? null : dictValue.trim();
     }
 }

@@ -6,6 +6,7 @@
     <result column="sys_name" property="sysName" jdbcType="VARCHAR" />
     <result column="other_nanme" property="otherNanme" jdbcType="VARCHAR" />
     <result column="tb_name" property="tbName" jdbcType="VARCHAR" />
+    <result column="dict_value" property="dictValue" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    no, sys_name, other_nanme, tb_name
+    no, sys_name, other_nanme, tb_name, dict_value
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.airron.vo.TbDictExchangeExample" >
     select
@@ -100,9 +101,9 @@
   </delete>
   <insert id="insert" parameterType="com.airron.vo.TbDictExchange" >
     insert into tb_dict_exchange (no, sys_name, other_nanme, 
-      tb_name)
+      tb_name, dict_value)
     values (#{no,jdbcType=INTEGER}, #{sysName,jdbcType=VARCHAR}, #{otherNanme,jdbcType=VARCHAR}, 
-      #{tbName,jdbcType=VARCHAR})
+      #{tbName,jdbcType=VARCHAR}, #{dictValue,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.airron.vo.TbDictExchange" >
     insert into tb_dict_exchange
@@ -119,6 +120,9 @@
       <if test="tbName != null" >
         tb_name,
       </if>
+      <if test="dictValue != null" >
+        dict_value,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="no != null" >
@@ -133,6 +137,9 @@
       <if test="tbName != null" >
         #{tbName,jdbcType=VARCHAR},
       </if>
+      <if test="dictValue != null" >
+        #{dictValue,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.airron.vo.TbDictExchangeExample" resultType="java.lang.Integer" >
@@ -141,13 +148,6 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  
-  <!-- @airron private -->
-  <select id="getTbDictByName" parameterType="com.airron.vo.TbDictExchangeExample" resultMap="BaseResultMap">
-  	select * from tb_dict_exhange where tb_name = #{record.tbName,jdbcType=VARCHAR}
-  </select>
-  
-  
   <update id="updateByExampleSelective" parameterType="map" >
     update tb_dict_exchange
     <set >
@@ -163,6 +163,9 @@
       <if test="record.tbName != null" >
         tb_name = #{record.tbName,jdbcType=VARCHAR},
       </if>
+      <if test="record.dictValue != null" >
+        dict_value = #{record.dictValue,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -173,7 +176,8 @@
     set no = #{record.no,jdbcType=INTEGER},
       sys_name = #{record.sysName,jdbcType=VARCHAR},
       other_nanme = #{record.otherNanme,jdbcType=VARCHAR},
-      tb_name = #{record.tbName,jdbcType=VARCHAR}
+      tb_name = #{record.tbName,jdbcType=VARCHAR},
+      dict_value = #{record.dictValue,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -190,6 +194,9 @@
       <if test="tbName != null" >
         tb_name = #{tbName,jdbcType=VARCHAR},
       </if>
+      <if test="dictValue != null" >
+        dict_value = #{dictValue,jdbcType=VARCHAR},
+      </if>
     </set>
     where no = #{no,jdbcType=INTEGER}
   </update>
@@ -197,7 +204,8 @@
     update tb_dict_exchange
     set sys_name = #{sysName,jdbcType=VARCHAR},
       other_nanme = #{otherNanme,jdbcType=VARCHAR},
-      tb_name = #{tbName,jdbcType=VARCHAR}
+      tb_name = #{tbName,jdbcType=VARCHAR},
+      dict_value = #{dictValue,jdbcType=VARCHAR}
     where no = #{no,jdbcType=INTEGER}
   </update>
 </mapper>

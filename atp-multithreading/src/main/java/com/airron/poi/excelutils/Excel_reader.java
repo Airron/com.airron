@@ -46,32 +46,11 @@ public class Excel_reader {
 		}
 		Sheet sheet = workbook.getSheet(sheet_name);
 		Row row = sheet.getRow(row1);
-
-		/*
-		 * if(cell != null){ String cellValue = ""; // 以下是判断数据的类型 switch
-		 * (cell.getCellType()) { case HSSFCell.CELL_TYPE_NUMERIC: // 数字
-		 * cellValue = cell.getNumericCellValue() + ""; break;
-		 * 
-		 * case HSSFCell.CELL_TYPE_STRING: // 字符串 cellValue =
-		 * cell.getStringCellValue(); break;
-		 * 
-		 * case HSSFCell.CELL_TYPE_BOOLEAN: // Boolean cellValue =
-		 * cell.getBooleanCellValue() + ""; break;
-		 * 
-		 * case HSSFCell.CELL_TYPE_FORMULA: // 公式
-		 * 
-		 * cellValue = cell.getCellFormula() + ""; break;
-		 * 
-		 * case HSSFCell.CELL_TYPE_BLANK: // 空值 cellValue = ""; break;
-		 * 
-		 * case HSSFCell.CELL_TYPE_ERROR: // 故障 cellValue = "非法字符"; break;
-		 * 
-		 * default: cellValue = "未知类型"; break; }
-		 * 
-		 * 
-		 * }
-		 */
-		return row.getCell(cell1).getStringCellValue();
+		Cell cell = row.getCell(cell1);
+		
+		
+		
+		return sheet_name;	
 	}
 
 	public List<Map<Integer, List<Cell>>> excel_reader(int sheetno, File file)
